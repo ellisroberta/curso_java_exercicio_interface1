@@ -26,15 +26,19 @@ public class Program {
         System.out.print("Valor do contrato: ");
         double totalValue = sc.nextDouble();
 
+        // Criação do objeto contrato
         Contract contract = new Contract(number, date, totalValue);
 
         System.out.print("Número de parcelas: ");
         int n = sc.nextInt();
 
+        // Instancia o serviço de contrato com o PayPal
         ContractService contractService = new ContractService(new PaypalService());
 
-        contractService.processContrat(contract, n);
+        // Processa o contrato e gera as parcelas
+        contractService.processContract(contract, n);
 
+        // Exibe as parcelas
         System.out.println("Parcelas:");
         for (Installment installment : contract.getInstallments()) {
             System.out.println(installment);
